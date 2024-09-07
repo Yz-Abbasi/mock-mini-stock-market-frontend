@@ -1,4 +1,18 @@
 :host {
-    background-color: rgb(4, 122, 122);
+    background-color: rgb(200, 223, 223);
     width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+form {
+    border-radius: 12px;
+}
+
+input {
+    border-radius: 12px;
+}
+
+button {
+    border-radius: 15px;
 }
