@@ -1,12 +1,14 @@
 :host {
-    background-color: rgb(200, 223, 223);
+    background-color: #262042;
     width: 100%;
     display: flex;
     justify-content: center;
+    z-index: 5;
 }
 
 form {
     border-radius: 12px;
+    background-color: #262042;
 }
 
 input {

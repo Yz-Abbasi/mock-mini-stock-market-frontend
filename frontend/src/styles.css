@@ -13,7 +13,8 @@ body {
 
 body {
     margin: 0px;
-    background-color: #fbfbfb;
+    background-image: url(../public/4007495.jpg);
+    background-size: cover;
     font-family: "Montserrat", sans-serif;
     font-style: normal;
 }

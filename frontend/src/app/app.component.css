@@ -9,9 +9,14 @@ header {
     width: 100%;
     padding: 0px;
     margin: 0px;
-    background-color: white;
-    color: #2c68a0;
+    background-color: transparent;
+    color: #cad1d8;
     height: 3.5em;
+}
+
+footer {
+    background-color: transparent;
+    z-index: 0;
 }
 
 .w-100 {
