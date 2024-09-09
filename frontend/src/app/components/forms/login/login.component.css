@@ -28,3 +28,6 @@ button {
       inset 4px 4px 6px 0 rgba(0, 0, 0, .4);
   }
   
+.ng-invalid:not(form) {
+    border: 2px rgb(252, 47, 47);
+}
