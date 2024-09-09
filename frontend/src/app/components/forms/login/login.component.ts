@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { User } from '../../../models/user';
 import { FormsModule, FormControl, FormGroup } from '@angular/forms';
-import { Console } from 'console';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,11 @@ import { Console } from 'console';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-
+  router: Router;
+  constructor(private http : HttpClient, router : Router)
+  {
+    this.router = router;
+  }
   user : User = new User
   (
     '',
@@ -27,5 +32,6 @@ export class LoginComponent {
     console.log(formValues);
     console.log('on submit function :' + this.user.username + this.user.password);
     this.submitted = true;
+    this.router.navigate(['']);
   }
 }
