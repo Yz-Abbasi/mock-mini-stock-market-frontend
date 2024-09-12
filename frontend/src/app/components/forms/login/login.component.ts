@@ -4,21 +4,32 @@ import { FormsModule, FormControl, FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { HttpService } from '../../../services/http.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
   router: Router;
+
   constructor(private http : HttpService, router : Router)
   {
     this.router = router;
   }
-  user : User = new User
+
+
+  newUser : User = new User
+  (
+    '',
+    '',
+    ''
+  )
+
+  existingUser : User = new User
   (
     '',
     '',
@@ -26,15 +37,17 @@ export class LoginComponent {
   )
 
   submitted : boolean = false;
+  loginFormActive : boolean = true;
+  RegisterFormActive : boolean = true;
 
   onSubmit(formValues : any)
   {
-    this.user.username = formValues.username;
-    this.user.email = formValues.email;
-    this.user.password = formValues.password;
+    this.newUser.username = formValues.username;
+    this.newUser.email = formValues.email;
+    this.newUser.password = formValues.password;
     console.log(formValues);
-    console.log('on submit function :' + this.user.username + this.user.password);
-    this.http.registerNewUser(this.user)
+    console.log('on submit function :' + this.newUser.username + this.newUser.password);
+    this.http.registerNewUser(this.newUser)
     this.submitted = true;
     this.router.navigate(['']);
   }
