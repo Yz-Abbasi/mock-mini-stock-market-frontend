@@ -15,13 +15,18 @@ export class HttpService {
   constructor(private http : HttpClient) {
   }
 
-  registerNewUser(user : User)
+  registerNewUser(newUser : User)
   {
     this.body = {
-      username: user.username,
-      email: user.email,
-      password: user.password
+      username: newUser.username,
+      email: newUser.email,
+      password: newUser.password
     }
     return this.http.post<any>('http://localhost:5037/api/account/register', this.body).subscribe();
+  }
+
+  login(username : string, password : string)
+  {
+    
   }
 }
