@@ -51,4 +51,9 @@ export class LoginComponent {
     this.submitted = true;
     this.router.navigate(['']);
   }
+
+  changeForm()
+  {
+    this.RegisterFormActive = !this.RegisterFormActive;
+  }
 }

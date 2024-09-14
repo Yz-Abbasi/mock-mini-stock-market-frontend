@@ -8,6 +8,7 @@
             <label for="password" class="text-white">Password:</label>
             <input type="password" id="password" [(ngModel)]="newUser.password" class="w-full min-h-10 border-collapse border mb-5 px-2" name="password">
         </div>
+        <p class="text-yellow-200">Already have an account?<a (click)="changeForm()" class="text-blue-300">Login</a></p>
         <button type="submit" class="login-btn bg-slate-300 min-h-12 hover:bg-amber-200 hover:text-emerald-900 hover:text-lg">Register</button>
     </form>
     <form *ngIf="!RegisterFormActive" #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm.value)" class="w-1/3 h-1/2 flex flex-col justify-between self-center border shadow-lg p-4 ng-invalid">
@@ -17,6 +18,7 @@
             <label for="password" class="text-white">Password:</label>
             <input type="password" id="password" [(ngModel)]="existingUser.password" class="w-full min-h-10 border-collapse border mb-5 px-2" name="password">
         </div>
+        <p class="text-yellow-200">Don't have an account?<a (click)="changeForm()" class="text-blue-300">Register</a></p>
         <button type="submit" class="login-btn bg-slate-300 min-h-12 hover:bg-amber-200 hover:text-emerald-900 hover:text-lg">Login</button>
     </form>
     <div [hidden]="!submitted">
