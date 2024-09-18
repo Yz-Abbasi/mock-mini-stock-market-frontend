@@ -34,7 +34,7 @@ button {
     border: 2px rgb(252, 47, 47);
 }
 
-p > a {
+p > a:hover {
   animation: neon3 1.5s ease-in-out infinite alternate;
 }
 

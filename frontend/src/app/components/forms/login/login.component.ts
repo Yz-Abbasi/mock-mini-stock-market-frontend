@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { User } from '../../../models/user';
-import { FormsModule, FormControl, FormGroup } from '@angular/forms';
+import { FormsModule, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { HttpService } from '../../../services/http.service';
@@ -40,7 +40,7 @@ export class LoginComponent {
   loginFormActive : boolean = true;
   RegisterFormActive : boolean = true;
 
-  onSubmit(formValues : any)
+  registerUser(formValues : any)
   {
     this.newUser.username = formValues.username;
     this.newUser.email = formValues.email;
@@ -50,6 +50,11 @@ export class LoginComponent {
     this.http.registerNewUser(this.newUser)
     this.submitted = true;
     this.router.navigate(['']);
+  }
+
+  loginUser(formValues : any)
+  {
+
   }
 
   changeForm()
