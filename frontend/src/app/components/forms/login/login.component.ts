@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { User } from '../../../models/user';
 import { FormsModule, Validators } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { HttpService } from '../../../services/http.service';
@@ -9,6 +10,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-login',
   standalone: true,
+  providers: [CookieService],
   imports: [FormsModule, CommonModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
@@ -16,7 +18,10 @@ import { CommonModule } from '@angular/common';
 export class LoginComponent {
   router: Router;
 
-  constructor(private http : HttpService, router : Router)
+  constructor(
+    private http : HttpService,
+    router : Router,
+    private cookieService : CookieService)
   {
     this.router = router;
   }
@@ -48,8 +53,10 @@ export class LoginComponent {
     console.log(formValues);
     console.log('on submit function :' + this.newUser.username + this.newUser.password);
 
-    const response = this.http.registerNewUser(this.newUser)
-    console.log(response)
+    const response = this.http.registerNewUser(this.newUser);
+    console.log(response);
+
+    this.cookieService.set("JWT", "Token goes here");
 
     this.submitted = true;
 
@@ -65,7 +72,9 @@ export class LoginComponent {
     const response = this.http.login(this.checkUser);
     console.log(response)
 
-    this.router.navigate([''])
+    this.cookieService.set("JWT", "Token goes here");
+
+    this.router.navigate(['']);
   }
 
   switchForm()
