@@ -29,7 +29,7 @@ export class LoginComponent {
     ''
   )
 
-  existingUser : User = new User
+  checkUser : User = new User
   (
     '',
     '',
@@ -47,17 +47,28 @@ export class LoginComponent {
     this.newUser.password = formValues.password;
     console.log(formValues);
     console.log('on submit function :' + this.newUser.username + this.newUser.password);
-    this.http.registerNewUser(this.newUser)
+
+    const response = this.http.registerNewUser(this.newUser)
+    console.log(response)
+
     this.submitted = true;
+
     this.router.navigate(['']);
   }
 
   loginUser(formValues : any)
   {
+    this.checkUser.username = formValues.username;
+    this.checkUser.password = formValues.password;
+    console.log(formValues);
 
+    const response = this.http.login(this.checkUser);
+    console.log(response)
+
+    this.router.navigate([''])
   }
 
-  changeForm()
+  switchForm()
   {
     this.RegisterFormActive = !this.RegisterFormActive;
   }

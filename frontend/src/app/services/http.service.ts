@@ -7,9 +7,11 @@ import { User } from '../models/user';
   providedIn: 'root'
 })
 export class HttpService {
-  body = {
+
+  url : string = 'http://localhost:5037/api/account/';
+
+  body : User = {
     username: '',
-    email: '',
     password: ''
   }
   constructor(private http : HttpClient) {
@@ -22,11 +24,17 @@ export class HttpService {
       email: newUser.email,
       password: newUser.password
     }
-    return this.http.post<any>('http://localhost:5037/api/account/register', this.body).subscribe();
+
+    return this.http.post<any>(`${this.url}register`, this.body).subscribe();
   }
 
-  login(username : string, password : string)
+  login(user : User)
   {
-    
+    this.body = {
+      username: user.username,
+      password: user.password
+    }
+
+    return this.http.post(`${this.url}login`, this.body).subscribe();
   }
 }
