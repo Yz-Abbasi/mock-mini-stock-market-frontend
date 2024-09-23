@@ -65,16 +65,28 @@ export class LoginComponent {
 
   loginUser(formValues : any)
   {
+
     this.checkUser.username = formValues.username;
     this.checkUser.password = formValues.password;
     console.log(formValues);
 
-    const response = this.http.login(this.checkUser);
-    console.log(response)
+    const response = this.http.login(this.checkUser).subscribe((res) => {
 
-    this.cookieService.set("JWT", "Token goes here");
+      this.cookieService.set("JWT", res.token);
+    });
+    console.log(`Response : ${response}`);
 
-    this.router.navigate(['']);
+
+    if((this.checkUser.username != null && this.checkUser.password != null) || (this.checkUser.username != '' && this.checkUser.password != ''))
+    {
+      this.router.navigate(['']);
+    }
+    else
+    {
+      this.checkUser.username = '';
+      this.checkUser.password = '';
+
+    }
   }
 
   switchForm()

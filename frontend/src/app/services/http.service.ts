@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError } from 'rxjs';
+import { Observable, catchError, map } from 'rxjs';
 import { User } from '../models/user';
 
 @Injectable({
@@ -35,6 +35,20 @@ export class HttpService {
       password: user.password
     }
 
-    return this.http.post(`${this.url}login`, this.body).subscribe();
+    // return this.http.post(`${this.url}login`, this.body).pipe(
+    //   map((res: any) => {
+    //     let token : any = res.token;
+    //   }),
+    //   catchError((error : any) => {
+    //     throw(error.json().error || "Server error!")
+    //   })
+    //   );
+
+    return this.http.post<any>(`${this.url}login`, this.body).pipe(map((data,error) => {
+      if(data)
+        return data
+      else
+        return error
+    }))
   }
 }
